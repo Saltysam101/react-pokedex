@@ -4,10 +4,15 @@
     box-sizing: border-box;
 }
 
+nav {
+    margin-top: 1rem;
+}
+
 nav>a {
     color: black;
     text-decoration: none;
     cursor: pointer;
+    margin-left: 2rem;
 }
 
 .poke-list {
@@ -42,4 +47,30 @@ nav>a {
 
 .poke-type>p {
     margin-right: 1rem;
+}
+
+@media only screen and (min-width: 500px) {
+    .poke-list {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .poke {
+        width: 375px;
+    }
+}
+
+@media only screen and (min-width: 1125px) {
+    nav {
+        margin-bottom: 2rem;
+    }
+    nav>a {
+        font-size: 1.75rem;
+    }
+}
+
+@media only screen and (min-width: 1500px) {
+    .poke-list {
+        width: 1500px;
+        margin: 0 auto;
+    }
 }
