@@ -4,6 +4,42 @@
     box-sizing: border-box;
 }
 
+nav>a {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .poke-list {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.poke {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+}
+
+.poke>img {
+    margin: 0 auto;
+    width: 80%;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.poke-info {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.poke-type {
+    display: flex;
+}
+
+.poke-type>p {
+    margin-right: 1rem;
 }
