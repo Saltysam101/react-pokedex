@@ -13,6 +13,16 @@ nav>a {
     text-decoration: none;
     cursor: pointer;
     margin-left: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+form {
+    margin: 2rem 0 2rem 2rem;
+}
+
+label {
+    margin-right: 0.5rem;
 }
 
 .poke-list {
