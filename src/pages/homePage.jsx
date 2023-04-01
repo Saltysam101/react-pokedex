@@ -1,5 +1,6 @@
 import React,  { useState, useEffect } from 'react';
 import { filterByProp, filterPokeListByType } from '../helpers/poke.helper';
+import { Link } from 'react-router-dom';
 
 export default function HomePage(props) {
 
@@ -12,6 +13,7 @@ export default function HomePage(props) {
     fetch("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json")
     .then((res) => res.json())
     .then((pokemon) => {
+      console.log(pokemon)
       setPokeList(pokemon)})
     .catch((err) => console.error(err))
   }
@@ -28,7 +30,6 @@ export default function HomePage(props) {
 
   let filteredPokeList = filterPokeListByType(pokeList.pokemon, type)
 
-//console.log(filteredPokeList.map((poke) => poke.num))
   return (
     <main>
       <form>
@@ -44,7 +45,21 @@ export default function HomePage(props) {
         { filteredPokeList ? filteredPokeList.map((poke) => {
         return (
         <div className='poke' key={poke.id}>
-          <img src={poke.img} alt={poke.name} />
+          <Link 
+            to={`/pokemon/${poke.name}`}
+            state={
+              {
+                name: poke.name,
+                img: poke.img,
+                type: poke.type,
+                weaknesses: poke.weaknesses,
+                num: poke.num,
+                height: poke.height,
+                weight: poke.weight
+              }}
+          >
+            <img src={poke.img} alt={poke.name} />
+          </Link>
           <div className="poke-info">
             <p>{poke.num}</p>
             <h3>{poke.name}</h3>

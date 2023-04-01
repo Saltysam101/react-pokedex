@@ -40,7 +40,7 @@ label {
     margin: 1rem 0;
 }
 
-.poke>img {
+.poke>a>img {
     margin: 0 auto;
     width: 80%;
     background-color: rgba(0, 0, 0, 0.1);
@@ -57,6 +57,54 @@ label {
 
 .poke-type>p {
     margin-right: 1rem;
+}
+
+.poke-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 80vh;
+}
+
+.poke-header>h1,
+h3 {
+    display: inline;
+}
+
+.poke-header>h3 {
+    margin-left: 2rem;
+}
+
+.poke-img {
+    width: 50%;
+    max-width: 350px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.stats {
+    background-color: rgb(66, 66, 255);
+    color: white;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    border-radius: 10px;
+    width: 75%;
+    max-width: 410px;
+}
+
+.stats>div {
+    margin-bottom: 0.5rem;
+}
+
+.type>span {
+    margin-left: 0.5rem;
+}
+
+.weaknesses>span {
+    margin-left: 0.5rem;
 }
 
 @media only screen and (min-width: 500px) {

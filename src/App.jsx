@@ -11,7 +11,7 @@ function App() {
       </nav>
       <Routes>
         <Route path='/' exact Component={HomePage} />
-        <Route path='/pokemon/:id' Component={PokemonPage} />
+        <Route path='/pokemon/:name' Component={PokemonPage} />
       </Routes>
     </Router>
   );
