@@ -7,6 +7,7 @@ export default function HomePage(props) {
   const [pokeList, setPokeList] = useState({})
   const [type, setType] = useState("")
   const [weakness, setWeakness] = useState("")
+  const [pokeSearch, setPokeSearch] = useState("")
 
 
   function getPokemon(){
@@ -32,12 +33,12 @@ export default function HomePage(props) {
   let pokeType = [...new Set(flattenTypes.map((poke) => poke))]
   let pokeWeakness = [...new Set(flattenWeakness.map((poke) => poke))]
 
-  let filteredPokeList = filterPokeList(pokeList.pokemon, type, weakness)
+  let filteredPokeList = filterPokeList(pokeList.pokemon, type, weakness, pokeSearch)
   //console.log(filteredPokeList)
 
   return (
     <main>
-      <form>
+      <form onSubmit={(e) => e.preventDefault()}>
           <label htmlFor="type">Type</label>
           <select value={type} onChange={(e) => setType(e.target.value)} name="type" id="type">
             <option value="">All</option>
@@ -52,6 +53,8 @@ export default function HomePage(props) {
               return <option key={idx} value={weakness}>{weakness}</option>
             }) : <></>}
           </select>
+          <label htmlFor="search"></label>
+          <input placeholder="Search" id="search" onChange={(e) => {setPokeSearch(e.target.value)}} type="text" />
         </form>
       {<div className='poke-list'>
         {  filteredPokeList ? filteredPokeList.map((poke) => {
