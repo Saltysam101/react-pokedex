@@ -25,6 +25,10 @@ label {
     margin-right: 0.5rem;
 }
 
+#weakness-label{
+    margin-left: 2rem;
+}
+
 .poke-list {
     width: 100%;
     display: flex;

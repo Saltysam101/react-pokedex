@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom'
 export default function PokemonPage(props) {
 
   let {state} = useLocation()
-  console.log(state.type)
   return (
     <div className='poke-page'>
       <header className='poke-header'>

@@ -1,34 +1,39 @@
 import React,  { useState, useEffect } from 'react';
-import { filterByProp, filterPokeListByType } from '../helpers/poke.helper';
+import { filterByProp, filterPokeList } from '../helpers/poke.helper';
 import { Link } from 'react-router-dom';
 
 export default function HomePage(props) {
 
   const [pokeList, setPokeList] = useState({})
   const [type, setType] = useState("")
+  const [weakness, setWeakness] = useState("")
 
 
   function getPokemon(){
-   
     fetch("https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json")
     .then((res) => res.json())
     .then((pokemon) => {
-      console.log(pokemon)
-      setPokeList(pokemon)})
+      //console.log(pokemon)
+      setPokeList(pokemon)
+    })
     .catch((err) => console.error(err))
   }
 
 
   useEffect(() => {
     getPokemon()
-  }, [])
+  },[])
 
 
   let types = filterByProp(pokeList.pokemon, "type")
+  let weaknesses = filterByProp(pokeList.pokemon, "weaknesses")
   let flattenTypes = [].concat.apply([], types)
+  let flattenWeakness = [].concat.apply([], weaknesses)
   let pokeType = [...new Set(flattenTypes.map((poke) => poke))]
+  let pokeWeakness = [...new Set(flattenWeakness.map((poke) => poke))]
 
-  let filteredPokeList = filterPokeListByType(pokeList.pokemon, type)
+  let filteredPokeList = filterPokeList(pokeList.pokemon, type, weakness)
+  //console.log(filteredPokeList)
 
   return (
     <main>
@@ -40,9 +45,16 @@ export default function HomePage(props) {
               return <option key={idx} value={type}>{type}</option>
             }) : <></>}
           </select>
+          <label id="weakness-label" htmlFor="weakness">Weakness</label>
+          <select value={weakness} id="weakness" onChange={(e) => setWeakness(e.target.value)} name="weakness">
+            <option value="">All</option>
+            {pokeWeakness ? pokeWeakness.map((weakness, idx) => {
+              return <option key={idx} value={weakness}>{weakness}</option>
+            }) : <></>}
+          </select>
         </form>
-      <div className='poke-list'>
-        { filteredPokeList ? filteredPokeList.map((poke) => {
+      {<div className='poke-list'>
+        {  filteredPokeList ? filteredPokeList.map((poke) => {
         return (
         <div className='poke' key={poke.id}>
           <Link 
@@ -70,7 +82,7 @@ export default function HomePage(props) {
           </div>
         </div>) 
       }) : <>loading...</>}
-      </div>
+      </div>}
     </main>
   )
 }

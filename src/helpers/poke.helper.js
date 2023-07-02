@@ -4,7 +4,14 @@ export function filterByProp(list, prop) {
     } else return list
 }
 
-export function filterPokeListByType(list, type) {
-    if (type) return list.filter((poke) => poke.type[0] == type || poke.type[1] == type)
-    else return list
+export function filterPokeList(list, type, weakness){
+    if(list) {
+        //console.log(list)
+        const filteredPokeList = list.filter((poke) => {
+            const pokeType = type.length === 0 || poke.type.includes(type);
+            const pokeWeakness = weakness.length === 0 || poke.weaknesses.includes(weakness);
+            return pokeType && pokeWeakness
+        })
+        return filteredPokeList
+    }
 }
